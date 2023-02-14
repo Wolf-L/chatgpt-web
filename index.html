@@ -21,7 +21,7 @@
 <script>
 $(document).keypress(function(e) {
 		if (e.which == 13) {
-			$("#result").val("请稍等,正在加载(如果长时间未加载出来就说明没余额了)");
+			$("#result").val("请稍等,正在加载");
 			$.ajax({
 			type: "GET",
 			url: "https://api.caonm.net/api/ai/o.php",
