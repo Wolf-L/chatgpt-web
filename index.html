@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatGPT网页版</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>ChatGPT</h1>
+        <input id="input" placeholder="在此输入您想问的问题"></input>
+        <textarea cols="50" rows="10" id="result" name="result"></textarea>
+    </div>
+</body>
+</html>
+<script>
+   $(document).keypress(function(e) {
+       if(e.which == 13) {
+       $("#result").val("请稍等,正在加载(如果长时间未加载出来就说明没余额了)");
+        $.ajax({
+            type: "GET",
+            url: "http://api.caonm.net/api/ai/o.php",
+            data: {img:$("#input").val()},
+            success: function(data) {
+                $("#result").val(data.data.html);
+            }
+        });
+       }
+   });
+
+</script>
