@@ -14,24 +14,18 @@
 <div class="container">
     <h1>ChatGPT</h1>
     <input id="input" placeholder="在此输入您想问的问题"></input>
-    <textarea cols="50" rows="10" id="result" name="result" placeholder="公告：api变更，预计下周修复"></textarea>
+    <textarea cols="50" rows="10" id="result" name="result" placeholder=""></textarea>
 </div>
 </body>
 </html>
 <script>
 $(document).keypress(function(e) {
-		if (e.which == 13) {
-			$("#result").val("请稍等,正在加载");
-			$.ajax({
-			type: "GET",
-			url: "https://api.caonm.net/api/ai/o.php",
-			data: {
-				img: $("#input").val()
-			},
-			success: function(data) {
-				$("#result").val(data.data.html);
-			}
-		});
-	}
+if (e.which == 13) {
+	$("#result").val("请稍等,正在加载");
+	var url="https://v1.apigpt.cn/?q="+$("#input").val()+"&apitype=sql"
+	$.getJSON(url, function(data){
+		$("#result").val(data.ChatGPT_Answer);
+	});
+}
 });
 </script>
